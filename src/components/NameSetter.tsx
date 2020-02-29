@@ -1,7 +1,7 @@
 import { IonButton, IonInput, IonText } from '@ionic/react';
 import React, { useRef } from 'react';
 
-type NameSetterProps = {
+export type NameSetterProps = {
   initialValue: string
   placeholder: string
   buttonTitle: string
@@ -18,6 +18,7 @@ const NameSetter: React.FC<NameSetterProps> = ({ initialValue, placeholder, butt
     if (onNameSet) {
       onNameSet(inputRef.current!.value ?? '');
     }
+
     inputRef.current!.value = "";
   }
 

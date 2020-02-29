@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import NameList from './NameList';
-import NameSetter from './NameSetter';
+import NameSetter, { NameSetterProps } from './NameSetter';
 
-type ContactSetterProps = {
-  initialValue: string
-  placeholder: string
-  buttonTitle: string
-}
 
-const ContactNameList: React.FC<ContactSetterProps> = ({ initialValue, placeholder, buttonTitle }) => {
+const ContactNameList: React.FC<NameSetterProps> = ({ initialValue, placeholder, buttonTitle }) => {
 
   const [nameList, setNameList] = useState<string[]>([]);
 
@@ -18,8 +13,8 @@ const ContactNameList: React.FC<ContactSetterProps> = ({ initialValue, placehold
   }
 
   const removeName = (removeIndex: number) => {
-    const list = nameList.filter((name, index) => index !== removeIndex);
 
+    const list = nameList.filter((name, index) => index !== removeIndex);
     setNameList(list);
   }
 
@@ -29,7 +24,6 @@ const ContactNameList: React.FC<ContactSetterProps> = ({ initialValue, placehold
       <NameList names={nameList} onRemoveName={removeName} />
     </>
   )
-
 }
 
 export default ContactNameList;
