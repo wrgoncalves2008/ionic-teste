@@ -12,9 +12,11 @@ const DEFAULT_APPDATA: AppData = {
 
 export interface AppDataAction {
 
-  action: ({ type: 'add', nameToInsert: string }) |
+  action:
+  ({ type: 'add', nameToInsert: string }) |
   ({ type: 'delete', indexToDelete: number }) |
-  ({ type: 'initialize', state: AppData });
+  ({ type: 'initialize', state: AppData }) |
+  ({ type: 'update', at: number, to: string });
 
 }
 
@@ -52,8 +54,26 @@ export const AppContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chil
 
           return newState;
         }
-        case 'initialize':
+        case 'initialize': {
           return action.state
+        }
+        case 'update': {
+          const newNames = [...state.names];
+          newNames[action.at] = action.to;
+
+          const newState = {
+            ...state,
+            names: newNames
+          }
+
+          Storage.set({
+            key: 'AppContext',
+            value: JSON.stringify(newState)
+          })
+
+          return newState;
+        }
+
       }
     }, DEFAULT_APPDATA
   )

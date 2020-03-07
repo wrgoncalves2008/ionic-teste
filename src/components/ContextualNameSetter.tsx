@@ -11,6 +11,10 @@ const ContextualNameSetter: React.FC<NameSetterProps> = (props: NameSetterProps)
       dispatchAppData({
         action: { type: 'add', nameToInsert: name }
       })
+
+      if (props.onNameSet) {
+        props.onNameSet(name);
+      }
     }}
     />
   )

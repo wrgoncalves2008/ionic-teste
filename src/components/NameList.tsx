@@ -1,12 +1,14 @@
-import { IonButton, IonItem, IonLabel, IonList, IonAlert } from '@ionic/react';
+import { IonButton, IonItem, IonLabel, IonList, IonAlert, IonIcon } from '@ionic/react';
 import React, { useState } from 'react';
+import { trash, create } from 'ionicons/icons';
 
 type NameListProps = {
   names: string[]
   onRemoveName?: (index: number) => void
+  onUpdateName?: (index: number) => void
 }
 
-const NameList: React.FC<NameListProps> = ({ names, onRemoveName }) => {
+const NameList: React.FC<NameListProps> = ({ names, onRemoveName, onUpdateName }) => {
 
   const [alertVisible, setAlertVisible] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -19,10 +21,19 @@ const NameList: React.FC<NameListProps> = ({ names, onRemoveName }) => {
             <IonLabel>{name}</IonLabel>
 
             <IonButton onClick={() => {
+              if (onUpdateName) {
+                onUpdateName(index);
+              }
+            }}>
+              <IonIcon icon={create} />
+            </IonButton>
+
+            <IonButton onClick={() => {
               setSelectedIndex(index);
               setAlertVisible(true);
-
-            }}>Remover</IonButton>
+            }}>
+              <IonIcon icon={trash} />
+            </IonButton>
           </IonItem>)
         })}
       </IonList >
