@@ -17,7 +17,7 @@ const NameList: React.FC<NameListProps> = ({ names, onRemoveName, onUpdateName }
     <>
       <IonList>
         {names.map((name, index) => {
-          return (<IonItem key={`NameList_${name}_${index}`} button>
+          return (<IonItem key={`NameList_${name}_${index}`}>
             <IonLabel>{name}</IonLabel>
 
             <IonButton onClick={() => {

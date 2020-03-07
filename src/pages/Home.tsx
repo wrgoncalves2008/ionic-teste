@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonMenuButton } from "@ionic/react";
 import ContextualNameSetter from "../components/ContextualNameSetter";
 import ContextualNameList from "../components/ContextualNameList";
 import React from "react";
@@ -27,6 +27,9 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>Ionic Blank</IonTitle>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
 

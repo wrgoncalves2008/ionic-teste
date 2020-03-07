@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonSplitPane, IonPage } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 
@@ -26,19 +26,29 @@ import { AppContextProvider } from './contexts/AppContext';
 import ListPage from './pages/ListPage';
 import InsertPage from './pages/InsertPage';
 import UpdatePage from './pages/UpdatePage';
+import TabsPage from './pages/TabsPage';
+import MenuPages from './pages/MenuPages';
 
 const App: React.FC = () => (
   <IonApp>
     <AppContextProvider>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/home" component={Home} exact={true} />
-          <Route path="/list" component={ListPage} exact={true} />
-          <Route path="/insert" component={InsertPage} exact />
-          <Route path="/update/:idx" component={UpdatePage} exact />
-          <Route exact path="/" render={() => <Redirect to="/list" />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
+      <IonSplitPane contentId="main">
+        <MenuPages />
+        <IonPage id="main">
+          <IonReactRouter>
+            <IonRouterOutlet>
+              <Route path="/home" component={Home} exact={true} />
+              <Route path="/list" component={ListPage} exact={true} />
+              <Route path="/insert" component={InsertPage} exact />
+              <Route path="/update/:idx" component={UpdatePage} exact />
+              <Route path="/tabs" component={TabsPage} exact />
+              <Route path="/menu" component={MenuPages} exact />
+              <Route exact path="/" render={() => <Redirect to="/home" />} />
+            </IonRouterOutlet>
+          </IonReactRouter>
+        </IonPage>
+      </IonSplitPane>
+
     </AppContextProvider>
   </IonApp>
 );

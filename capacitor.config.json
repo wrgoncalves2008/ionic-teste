@@ -1,8 +1,9 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "AulaFib",
+  "appId": "br.com.fib.hybrid",
+  "appName": "Aula FIB",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
-  "cordova": {}
+  "cordova": {},
+  "linuxAndroidStudioPath": "/home/willians/Dev/android-studio/bin/studio.sh"
 }
